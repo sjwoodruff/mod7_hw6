@@ -49,6 +49,7 @@ int main(int argc, char *argv[ ])
 	Showit(rad,ang);
 	printf("\n");
 	AskQuestion();
+
 	return 0;
 }
 
@@ -64,13 +65,22 @@ void Usage(void)
 void GetRec(double* x, double* y)
 {
 	double first, second;
+
 	printf("Rectangular to Polar Coordinate conversion program.\n");
 	printf("Enter the x coordinate: ");
 	scanf("%lf", &first);
 	printf("Enter the y coordinate: ");
 	scanf("%lf", &second);
+	
 	*x = first;
 	*y = second;
+
+	while (first == 0.0 || second == 0.0)
+	{
+		printf("\nInvalid Input! Try again.\n");
+		return;
+	}
+
 }
 
 void Polar(double x, double y, double* r, double* theta)
@@ -80,7 +90,7 @@ void Polar(double x, double y, double* r, double* theta)
 }
 void Showit(double r, double theta)
 {
-	printf("The polar cordinates are: \n");
+	printf("\nThe polar cordinates are: \n");
 	printf("Distance from origin: %lf\n", r);
 	printf("Angle (in degrees) from x-axis: %lf\n", theta);
 }
@@ -93,16 +103,16 @@ int AskQuestion(void)
 	printf("Do you want to calculate again (Y/N)?\n");
 	printf("Y = 1, N = 0: ");
 	scanf("%d", &yesno);
-	if (yesno != 1 && yesno != 0)
+	while (yesno != 1 && yesno != 0)
 	{
 		printf("Bad input, try again\n");
 		printf("\n");
-		AskQuestion();
-		return 0;
+		exit(1);
+		
 	}
-	else if (yesno == 0)
+	if (yesno == 0)
 	{
-		printf("Done!\n");
+		printf("Thanks for using our calculator!\n");
 	}
 	else if (yesno == 1)
 	{
@@ -113,6 +123,6 @@ int AskQuestion(void)
 		AskQuestion();
 	}
 	
-	return 0;
+	return yesno;
 }
 
