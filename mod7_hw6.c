@@ -66,6 +66,8 @@ void GetRec(double* x, double* y)
 {
 	double first, second;
 
+	do
+	{
 	printf("Rectangular to Polar Coordinate conversion program.\n");
 	printf("Enter the x coordinate: ");
 	scanf("%lf", &first);
@@ -75,11 +77,22 @@ void GetRec(double* x, double* y)
 	*x = first;
 	*y = second;
 
-	while (first == 0.0 || second == 0.0)
+	if (first == 0.0 || second == 0.0)
 	{
 		printf("\nInvalid Input! Try again.\n");
 		return;
 	}
+
+	else
+	{
+		break;
+	}
+	}
+	
+
+	while(1);
+
+	return;
 
 }
 
